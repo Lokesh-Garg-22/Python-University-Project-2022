@@ -6,7 +6,9 @@ Welcome to the Elite Cafe.
 What whould you like to order?'''
 help_text = '''
 exit / quit -> To exit the Program.
-menu -> Prints the Menu.'''
+menu -> Prints the Menu.
+order item_id user_id quantity(default=1) -> Place an Order by User.
+checkout -> Get the total price to be Paid.'''
 
 def print_menu():
     for i in range(len(Items)):
@@ -35,8 +37,17 @@ def checkout(user_id):
             total += price
             print("{}. {} {}".format(i+1,Items[user_orders[i][1]][0],times_text).ljust(20),"\t ${}".format(price))
         print("Total Price".ljust(20),"\t ${}".format(total))
-        answer = input("Whould You like to Checkout? ").lower().strip()
-        print("Answer: ",answer)
+        answer = input("Whould You like to Checkout? ").lower().strip() == "y"
+        if answer:
+            t = []
+            for i in range(len(Orders)):
+                if Orders[i][0] == user_id:
+                    t.append(i)
+            for i in t[::-1]:
+                del Orders[i]
+            print("You have Paid.")
+        else:
+            print("Checkout has been canceled.")
 
 print(welcome_text)
 while True:
