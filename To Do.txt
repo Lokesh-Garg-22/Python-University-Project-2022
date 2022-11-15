@@ -7,5 +7,6 @@ Print Order
 
 Before LAB Evaluation 2-
 Add Coupons
+Coupon ID Generator
 Use Coupons
 Login / Logout of User
