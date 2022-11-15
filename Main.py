@@ -1,7 +1,7 @@
 Items = [["Item-1",10],["Item-2",10],["Item-3",10],["Item-4",10],["Item-5",10]]
 Users = [["admin","admin",True],["user-1","pass"],["user-2","pass"]]
 Orders = [[1, 0, 5], [1, 2, 1]] #[user_id,item_id,quantity]
-Coupons = []
+Coupons = [["Coupon-1","IFJT928R",5]] #[Coupon Name,Coupon ID,Times it can be used]
 welcome_text_1 = '''Welcome to the Elite Cafe.'''
 welcome_text_2 = '''What whould you like to order?'''
 help_text = '''
