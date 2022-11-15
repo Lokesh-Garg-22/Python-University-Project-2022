@@ -2,3 +2,6 @@ Add User
 Add Item
 Check Orders
 Cancel Order
+Print Order
+Add Coupons
+Use Coupons
