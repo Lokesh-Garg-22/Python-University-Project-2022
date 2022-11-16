@@ -4,9 +4,11 @@ Add Item
 Check Orders
 Cancel Order
 Print Order
+Locations
 
 Before LAB Evaluation 2-
 Add Coupons
 Coupon ID Generator
 Use Coupons
 Login / Logout of User
+Online / Offline Type of User

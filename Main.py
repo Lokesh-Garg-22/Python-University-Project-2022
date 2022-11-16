@@ -10,6 +10,7 @@ menu -> Prints the Menu.
 order item_id user_id quantity(default=1) -> Place an Order by User.
 checkout -> Get the total price to be Paid.'''
 
+
 def print_menu():
     for i in range(len(Items)):
         print("{}: {}".format(i+1, Items[i][0]).rjust(1).ljust(20),"\t",Items[i][1])
@@ -64,6 +65,10 @@ def checkout(user_id):
         print("Your Orders have been Paid.")
     else:
         print("Checkout has been canceled.")
+def add_user():
+    pass
+def add_item():
+    pass
 
 print()
 print(welcome_text_1)
