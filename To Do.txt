@@ -1,10 +1,11 @@
 Before LAB Evaluation 1-
-Add User
-Add Item
-Check Orders
-Cancel Order
-Print Order
-Locations
+Add User - Mehak
+Add Item - Manya
+Check Orders - Mehak
+Cancel Order - Manya
+Print Orders - Manya
+Print Users - Mehak
+Locations - Lokesh
 
 Before LAB Evaluation 2-
 Add Coupons
