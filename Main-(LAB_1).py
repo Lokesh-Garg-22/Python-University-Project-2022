@@ -1,19 +1,30 @@
 Items = [["Item-1",10],["Item-2",10],["Item-3",10],["Item-4",10],["Item-5",10]] #[item_name,price]
 Users = [["admin","admin",True],["user-1","pass",False],["user-2","pass",False]] #[user_name,user_password,is_admin]
 Orders = [[1, 0, 5], [1, 2, 1]] #[user_id,item_id,quantity]
+Locations = ["Chandigarh","New Delhi","Mumbai","Jaipur"]
 Coupons = [["Coupon-1","IFJT928R",5]] #[Coupon Name,Coupon ID,Times it can be used]
 welcome_text_1 = '''Welcome to the Elite Cafe.'''
 welcome_text_2 = '''What whould you like to order?'''
 help_text = '''
 exit / quit -> To exit the Program.
 menu -> Prints the Menu.
+location -> Prints all the Locations our Cafe is Located.
 order item_id user_id quantity(default=1) -> Place an Order by User.
-checkout -> Get the total price to be Paid.'''
+get orders user_id -> Get all The Orders Placed by The User.
+cancel order user_id order_id -> Cancel a Particular Order Placed by The User.
+checkout -> Get the total price to be Paid.
+add item user_id -> Add a New Item in the Menu. CAN ONLY BE DONE BY THE ADMIN.
+add user user_id -> Add a New User in the Database. CAN ONLY BE DONE BY THE ADMIN.
+get users user_id -> Print All the Users in the Database. CAN ONLY BE DONE BY THE ADMIN.'''
 
 
 def print_menu():
     for i in range(len(Items)):
         print("{}: {}".format(i+1, Items[i][0]).rjust(1).ljust(20),"\t",Items[i][1])
+
+def print_locations():
+    for i in range(len(Locations)):
+        print("{}: {}".format(i+1, Locations[i]).ljust(20))
 
 def check_password(user_id):
     password = input("Password: ").strip()
@@ -21,6 +32,13 @@ def check_password(user_id):
         return True
     else:
         print("Incorrect Password".upper())
+        return False
+
+def check_admin(user_id):
+    if Users[user_id][2]:
+        return True
+    else:
+        print("You are not an Admin".upper())
         return False
 
 def order_item(item_id,user_id,quantity=1):
@@ -71,8 +89,7 @@ def checkout(user_id):
         print("Checkout has been canceled.")
 
 def add_user(user_id):
-    if Users[user_id][2]==False:
-        print("You are not an Admin")
+    if not check_admin(user_id):
         return
     if not check_password(user_id):
         return
@@ -83,8 +100,7 @@ def add_user(user_id):
     print("User {} has been added.".format(username))
 
 def print_user(user_id):
-    if Users[user_id][2]==False:
-        print("You are not an Admin")
+    if not check_admin(user_id):
         return
     if not check_password(user_id):
         return
@@ -99,8 +115,7 @@ def print_user(user_id):
         print("{}. {} ".format(n,i[0]).ljust(20),"{}".format(t))
 
 def add_item(user_id):
-    if Users[user_id][2]==False:
-        print("You are not an Admin")
+    if not check_admin(user_id):
         return
     if not check_password(user_id):
         return
@@ -147,6 +162,8 @@ while True:
         print_menu()
     elif user_input[0] == "help": # Help
         print(help_text)
+    elif user_input[0] == "location": # Locations
+        print_locations()
     elif user_input[0] == "order": # Order an Item
         if len(user_input) >= 4:
             order_item(int(user_input[1])-1, int(user_input[2]), int(user_input[3]))
@@ -181,6 +198,11 @@ while True:
     elif len(user_input) >= 2 and user_input[0] == "add" and user_input[1] == "user": #Add New User
         if len(user_input) >= 3:
             add_user(int(user_input[2]))
+        else:
+            print("Invalid Command: Please input Your User ID.")
+    elif len(user_input) >= 2 and user_input[0] == "get" and user_input[1] == "users": # Print Users
+        if len(user_input) >= 3:
+            print_user(int(user_input[2]))
         else:
             print("Invalid Command: Please input Your User ID.")
     else:
