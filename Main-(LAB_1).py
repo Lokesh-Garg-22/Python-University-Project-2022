@@ -1,21 +1,21 @@
 Items = [["Item-1",10],["Item-2",10],["Item-3",10],["Item-4",10],["Item-5",10]] #[item_name,price]
 Users = [["admin","admin",True],["user-1","pass",False],["user-2","pass",False]] #[user_name,user_password,is_admin]
 Orders = [[1, 0, 5], [1, 2, 1]] #[user_id,item_id,quantity]
-Locations = ["Chandigarh","New Delhi","Mumbai","Jaipur"]
 Coupons = [["Coupon-1","IFJT928R",5]] #[Coupon Name,Coupon ID,Times it can be used]
-welcome_text_1 = '''Welcome to the Elite Cafe.'''
-welcome_text_2 = '''What whould you like to order?'''
+Locations = ["Chandigarh","New Delhi","Mumbai","Jaipur"]
+welcome_text_1 = '''Welcome to the Elite Cafe'''
+welcome_text_2 = '''Type "Menu" OR "Help" to Start'''
 help_text = '''
-exit / quit -> To exit the Program.
-menu -> Prints the Menu.
-location -> Prints all the Locations our Cafe is Located.
-order item_id user_id quantity(default=1) -> Place an Order by User.
-get orders user_id -> Get all The Orders Placed by The User.
-cancel order user_id order_id -> Cancel a Particular Order Placed by The User.
-checkout -> Get the total price to be Paid.
-add item user_id -> Add a New Item in the Menu. CAN ONLY BE DONE BY THE ADMIN.
-add user user_id -> Add a New User in the Database. CAN ONLY BE DONE BY THE ADMIN.
-get users user_id -> Print All the Users in the Database. CAN ONLY BE DONE BY THE ADMIN.'''
+Exit / Quit -> To exit the Program.
+Menu -> Prints the Menu.
+Location -> Prints all the Locations our Cafe is Located.
+Order item_id user_id quantity(default=1) -> Place an Order by User.
+Get Orders user_id -> Get all The Orders Placed by The User.
+Cancel Order user_id order_id -> Cancel a Particular Order Placed by The User.
+Checkout user_id -> Get the total price to be Paid.
+Add Item user_id -> Add a New Item in the Menu. CAN ONLY BE DONE BY THE ADMIN.
+Add User user_id -> Add a New User in the Database. CAN ONLY BE DONE BY THE ADMIN.
+Get Users user_id -> Print All the Users in the Database. CAN ONLY BE DONE BY THE ADMIN.'''
 
 
 def print_menu():
@@ -51,7 +51,7 @@ def order_item(item_id,user_id,quantity=1):
     if not check_password(user_id):
         return
     Orders.append([user_id,item_id,quantity])
-    print(Orders)
+    print("Your Order of {}*{} has been Submitted".format(Items[item_id][0],quantity))
 
 def checkout(user_id):
     if user_id >= len(Users):
@@ -76,7 +76,8 @@ def checkout(user_id):
         total += price
         print("{}. {} {}".format(i+1,Items[user_orders[i][1]][0],times_text).ljust(20),"\t ${}".format(price))
     print("Total Price".ljust(20),"\t ${}".format(total))
-    answer = input("Whould You like to Checkout? ").lower().strip() == "y"
+    answer = input("Whould You like to Checkout? ").lower().strip()
+    answer = answer == "y" or answer == "yes"
     if answer:
         t = []
         for i in range(len(Orders)):
@@ -95,7 +96,8 @@ def add_user(user_id):
         return
     username=input("Please enter the Name of the User >").lower().strip()
     password=input("Please enter the Password of the User >").strip()
-    is_admin=input("Is the new User an Admin? >").lower().strip() == "y"
+    is_admin=input("Is the new User an Admin? >").lower().strip()
+    is_admin= is_admin == "y" or is_admin == "yes"
     Users.append([username,password,is_admin])
     print("User {} has been added.".format(username))
 
@@ -144,7 +146,8 @@ def cancel_order(user_id, order_id):
         return
     user_order = [i for i in Orders if i[0] == user_id]
     print("Your Order is {}*{}".format(Items[user_order[order_id][1]][0],user_order[order_id][2]))
-    c = input("Do you want to Cancel This Order? >").lower().strip() == "y"
+    c = input("Do you want to Cancel This Order? >").lower().strip()
+    c = c == "y" or c == "yes"
     if c:
         Orders.remove(user_order[order_id])
         print("Your order has been cancelled")
@@ -153,8 +156,8 @@ def cancel_order(user_id, order_id):
 
 print()
 print(welcome_text_1)
+print(welcome_text_2)
 while True:
-    print(welcome_text_2)
     user_input = input(">").lower().split()
     if user_input[0] == "exit" or user_input[0] == "quit" : # Exit the Program
         break
