@@ -1,6 +1,8 @@
 import random
 
 class Item:
+    discription = ""
+
     def __init__(self, name, price, discount = 0):
         self.name = name
         self.price = price
@@ -20,6 +22,9 @@ class Item:
             return (self.price - (self.price / 100 * self.discount)) * quantity
         else:
             return self.price * quantity
+
+    def print_item_discription(self):
+        return self.discription
 
 
 class Menu:
