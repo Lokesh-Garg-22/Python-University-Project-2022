@@ -1,0 +1,67 @@
+{
+    "coupons": {
+        "S6TAJ82FTV": {
+            "discount": 10,
+            "times_used": 1
+        }
+    },
+    "menu": {
+        "Group-1": {
+            "items": [
+                {
+                    "id": 1,
+                    "name": "Item-1",
+                    "price": 20,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 2,
+                    "name": "Item-2",
+                    "price": 20,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 3,
+                    "name": "Item-3",
+                    "price": 20,
+                    "discount": 10,
+                    "discription": ""
+                }
+            ]
+        },
+        "Group-2": {
+            "items": [
+                {
+                    "id": 4,
+                    "name": "Item-4",
+                    "price": 20,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 5,
+                    "name": "Item-5",
+                    "price": 20,
+                    "discount": 0,
+                    "discription": ""
+                }
+            ]
+        }
+    },
+    "users": [
+        {
+            "name": "Admin",
+            "password": "admin",
+            "admin": true,
+            "location": "offline",
+            "orders": [
+                {
+                    "item": 1,
+                    "quantity": 1
+                }
+            ]
+        }
+    ]
+}
