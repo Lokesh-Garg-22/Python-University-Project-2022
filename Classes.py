@@ -113,6 +113,9 @@ class Cafe:
                 break
         self.coupons[id] = {"discount": discount, "times_used": times_used}
 
+    def add_coupon(self, id, discount, times_used = 1):
+        self.coupons[id] = {"discount": discount, "times_used": times_used}
+
     def load_data(self):
         pass
 
