@@ -119,6 +119,26 @@ class Cafe:
         user.id = self.generate_user_id()
         self.users.append(user)
 
+    def print_users(self):
+        result = ""
+        result += ("ID".ljust(15) + "Name".ljust(15) + "Is Admin\n")
+        for i in self.users:
+            result += ("{}".format(i.id).ljust(15) + "{}".format(i.name).ljust(15) + "{}\n".format(i.admin))
+        return result
+
+    def print_user_orders(self, user):
+        if type(user) != User:
+            raise Exception(user, "is not a User.")
+            return
+        for i in self.users:
+            if user.id == i.id:
+                user = i
+        result = ""
+        result += ("Item".ljust(30) + "Quantity\n")
+        for i in user.orders:
+            result += ("{}".format(i["item"].name).ljust(30) + "{}\n".format(i["quantity"]))
+        return result
+
     def generate_coupon_id(self, length = 10):
         result = ""
         for i in range(length):

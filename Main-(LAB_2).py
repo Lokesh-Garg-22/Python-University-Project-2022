@@ -47,7 +47,7 @@ def remove_user_sequence():
     if not logged_in_user.admin:
         print("You are not an Admin.")
         return
-    print("print the list of users")
+    print(cafe.print_users())
     user_name = input("User Name ->").strip()
     print("chech for user")
     confirmation = input("Do you want to remove {} ->".format(user_name)).lower().strip()
@@ -73,9 +73,9 @@ def remove_item_sequence():
     if not logged_in_user.admin:
         print("You are not an Admin.")
         return
-    print("print the list of items")
+    print(cafe.menu)
     item_name = input("Item Name ->").strip()
-    print("chech for item")
+    print("check for item")
     item_group = ""
     confirmation = input("Do you want to remove {} from {}'s Group ->".format(item_name,item_group)).lower().strip()
     confirmation = (confirmation == "y") or (confirmation == "yes")
@@ -84,6 +84,16 @@ def remove_item_sequence():
         print("{} Item from {} Group has been Removed.".format(item_name,item_group))
     else:
         print("Item Removal has been Canceled")
+
+def set_item_discription_sequence():
+    if not logged_in_user.admin:
+        print("You are not an Admin.")
+        return
+    print(cafe.menu)
+    item_name = input("Item Name ->").strip()
+    print("check for item")
+    item_discription = input("New Item Discription ->")
+    print("change item discription")
 
 def chechout_sequence():
     use_coupon = input("Do you want to use a Coupon? ->").lower().strip()
@@ -171,5 +181,17 @@ while True:
                 add_user_sequence()
             elif user_input[1] == "item":
                 add_item_sequence()
+        elif user_input[0] == "set":
+            if user_input[1] == "item":
+                if user_input[2] == "discription":
+                    set_item_discription_sequence()
+        elif user_input[0] == "print":
+            if user_input[1] == "users":
+                if not logged_in_user.admin:
+                    print("You are not an Admin.")
+                    continue
+                print(cafe.print_users())
+            elif user_input[1] == "orders":
+                print(cafe.print_user_orders(logged_in_user))
         else:
             print("Invalid Command".upper())
