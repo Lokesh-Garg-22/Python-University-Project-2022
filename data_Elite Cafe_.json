@@ -1,10 +1,6 @@
 {
-    "coupons": {
-        "S6TAJ82FTV": {
-            "discount": 10,
-            "times_used": 1
-        }
-    },
+    "coupons": {},
+    "locations": [],
     "menu": {
         "Group-1": {
             "items": [
@@ -52,16 +48,36 @@
     },
     "users": [
         {
+            "id": 1,
             "name": "Admin",
             "password": "admin",
             "admin": true,
             "location": "offline",
-            "orders": [
-                {
-                    "item": 1,
-                    "quantity": 1
-                }
-            ]
+            "orders": []
+        },
+        {
+            "id": 2,
+            "name": "Lokesh",
+            "password": "pass",
+            "admin": false,
+            "location": "offline",
+            "orders": []
+        },
+        {
+            "id": 3,
+            "name": "Mehak",
+            "password": "pass",
+            "admin": false,
+            "location": "offline",
+            "orders": []
+        },
+        {
+            "id": 4,
+            "name": "Manya",
+            "password": "pass",
+            "admin": false,
+            "location": "offline",
+            "orders": []
         }
     ]
 }

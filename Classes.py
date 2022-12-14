@@ -61,6 +61,45 @@ class Menu:
             self.create_group(group)
             self.groups[group]["items"].append(item)
 
+    def get_item(self, item_name):
+        for i in self.groups:
+            for j in self.groups[i]["items"]:
+                if j.name == item_name:
+                    return j
+        else:
+            return False
+
+    def get_item_group(self, item_name):
+        for i in self.groups:
+            for j in self.groups[i]["items"]:
+                if j.name == item_name:
+                    return i
+        else:
+            return False
+
+    def remove_item(self, item, item_group = False):
+        if item_group == False:
+            for i in self.groups:
+                for j in self.groups[i]["items"]:
+                    if j.id == item.id:
+                        self.groups[i]["items"].remove(j)
+        else:
+            for j in self.groups[item_group]["items"]:
+                if j.id == item.id:
+                    self.groups[item_group]["items"].remove(j)
+
+    def change_item_discription(self, item, discription):
+        for i in self.groups:
+            for j in self.groups[i]["items"]:
+                if j.id == item.id:
+                    j.discription = discription
+
+    def change_item_discount(self, item, discount):
+        for i in self.groups:
+            for j in self.groups[i]["items"]:
+                if j.id == item.id:
+                    j.discount = discount
+
     def create_group(self, name):
         self.groups[name] = {"items": []}
 
@@ -82,8 +121,6 @@ class Menu:
 
 
 class Cafe:
-    data_file = "data.json"
-    data_back_up_file = "data_back_up.json"
     menu = None
     users = []
     coupons = {}
@@ -91,6 +128,8 @@ class Cafe:
 
     def __init__(self, name):
         self.name = name
+        self.data_file = "data" + "_" + self.name + "_" + ".json"
+        self.data_back_up_file = "data_back_up" + "_" + self.name + "_" + ".json"
 
     def set_menu(self, menu):
         if type(menu) != Menu:
@@ -119,6 +158,38 @@ class Cafe:
         user.id = self.generate_user_id()
         self.users.append(user)
 
+    def get_user(self, user_name):
+        for i in self.users:
+            if i.name == user_name:
+                return i
+        else:
+            return False
+
+    def remove_user(self, user):
+        if type(user) != User:
+            raise Exception(user, "is not a User.")
+            return
+        for i in self.users:
+            if i.id == user.id:
+                self.users.remove(i)
+                break
+
+    def add_user_order(self, user, item, quantity):
+        for i in self.users:
+            if i.id == user.id:
+                i.add_order(item, quantity)
+
+    def get_user_checkout_data(self, user):
+        for i in self.users:
+            if i.id == user.id:
+                data = i.get_checkout_data()
+                return data
+
+    def user_checkout(self, user):
+        for i in self.users:
+            if i.id == user.id:
+                i.checkout()
+
     def print_users(self):
         result = ""
         result += ("ID".ljust(15) + "Name".ljust(15) + "Is Admin\n")
@@ -133,11 +204,16 @@ class Cafe:
         for i in self.users:
             if user.id == i.id:
                 user = i
-        result = ""
-        result += ("Item".ljust(30) + "Quantity\n")
-        for i in user.orders:
-            result += ("{}".format(i["item"].name).ljust(30) + "{}\n".format(i["quantity"]))
-        return result
+        return user.print_orders()
+
+    def cancel_user_order(self, user, item):
+        if type(user) != User:
+            raise Exception(user, "is not a User.")
+            return
+        for i in self.users:
+            if user.id == i.id:
+                i.cancle_order(item)
+                break
 
     def generate_coupon_id(self, length = 10):
         result = ""
@@ -163,6 +239,15 @@ class Cafe:
 
     def add_coupon(self, id, discount, times_used = 1):
         self.coupons[id] = {"discount": discount, "times_used": times_used}
+
+    def use_coupon(self, coupon_id):
+        for i in self.coupons:
+            if i == coupon_id:
+                t = self.coupons[i]["times_used"] - 1
+                if t <= 0:
+                    del self.coupons[i]
+                else:
+                    self.coupons[i]["times_used"] = t
 
     def add_locations(self, *location):
         for l in location:
@@ -290,3 +375,31 @@ class User:
             raise Exception(item, "is not an Item")
             return
         self.orders.append({"item": item, "quantity": quantity})
+
+    def print_orders(self):
+        result = ""
+        result += ("Item".ljust(30,"-") + "Quantity\n")
+        for i in self.orders:
+            result += ("{}".format(i["item"]).ljust(30,"-") + "{}\n".format(i["quantity"]))
+        return result
+
+    def cancle_order(self, item):
+        if type(item) != Item:
+            raise Exception(item, "is not an Item")
+            return
+        for i in self.orders:
+            if i["item"].id == item.id:
+                self.orders.remove(i)
+                break
+
+    def get_checkout_data(self):
+        print_text = ""
+        total_amount = 0
+        print_text += ("Item".ljust(30,"-") + "Price\n")
+        for i in self.orders:
+            print_text += ("{}".format(i["item"]).ljust(30,"-") + "{}\n".format(i["item"].price))
+            total_amount += i["item"].price
+        return (print_text, total_amount)
+
+    def checkout(self):
+        self.orders = []
