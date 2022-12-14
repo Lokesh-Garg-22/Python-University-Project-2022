@@ -17,11 +17,11 @@ def reset_cafe(cafe = Cafe("")):
 def order_sequence():
     print(cafe.menu)
     print("What would you like to order?")
-    item_name = input("->")
+    item_name = input("->").strip()
     #### Check if the item is in the list
     print("How much Quantity do you Require?")
     while True:
-        quantity = input("->")
+        quantity = input("->").strip()
         try:
             quantity = int(quantity)
         except:
@@ -38,30 +38,78 @@ def add_user_sequence():
     if not logged_in_user.admin:
         print("You are not an Admin.")
         return
-    user_name = input("Username->")
-    user_password = input("Password->")
+    user_name = input("Username->").strip()
+    user_password = input("Password->").strip()
     #### Add New User.
     print("New User {} has been made.".format(user_name))
 
 def remove_user_sequence():
-    pass
+    if not logged_in_user.admin:
+        print("You are not an Admin.")
+        return
+    print("print the list of users")
+    user_name = input("User Name ->").strip()
+    print("chech for user")
+    confirmation = input("Do you want to remove {} ->".format(user_name)).lower().strip()
+    confirmation = (confirmation == "y") or (confirmation == "yes")
+    if confirmation:
+        print("remove user")
+        print("{} User has been Removed.".format(user_name))
+    else:
+        print("User Removal has been Canceled")
 
 def add_item_sequence():
     if not logged_in_user.admin:
         print("You are not an Admin.")
         return
     print(cafe.menu.print_groups())
-    item_group = input("Item Group->")
-    item_name = input("Item Name->")
-    item_price = input("Item Price->")
+    item_group = input("Item Group->").strip()
+    item_name = input("Item Name->").strip()
+    item_price = input("Item Price->").strip()
     #### Add New Item to Menu.
     print("New Item {} has been Added.".format(item_name))
 
 def remove_item_sequence():
-    pass
+    if not logged_in_user.admin:
+        print("You are not an Admin.")
+        return
+    print("print the list of items")
+    item_name = input("Item Name ->").strip()
+    print("chech for item")
+    item_group = ""
+    confirmation = input("Do you want to remove {} from {}'s Group ->".format(item_name,item_group)).lower().strip()
+    confirmation = (confirmation == "y") or (confirmation == "yes")
+    if confirmation:
+        print("remove item")
+        print("{} Item from {} Group has been Removed.".format(item_name,item_group))
+    else:
+        print("Item Removal has been Canceled")
 
 def chechout_sequence():
-    pass
+    use_coupon = input("Do you want to use a Coupon? ->").lower().strip()
+    use_coupon = (use_coupon == "y") or (use_coupon == "yes")
+    while use_coupon:
+        found = False
+        coupon_id = input("Coupon ID ->").strip()
+        for i in cafe.coupons:
+            if i == coupon_id:
+                found = True
+        if found:
+            print("Coupon ID {} found".format(coupon_id))
+            break
+        else:
+            print("Coupon ID {} not found".format(coupon_id))
+            use_coupon = False
+    data = ["Text to print", "total_amount"] ### print Chechout
+    if use_coupon:
+        print() ###print coupon discount
+    chechout = input("Do you want to Chechout? ->").lower().strip()
+    chechout = (chechout == "y") or (chechout == "yes")
+    if chechout:
+        #### do chechout for the user
+        print("Chechout Complete")
+    else:
+        print("Chechout has been Canceled")
 
 logged_in = False
 logged_in_user = User("","")
@@ -81,7 +129,7 @@ while True:
         print("Please Login to continue.")
         continue
     while not logged_in:
-        username = input("Username -> ")
+        username = input("Username -> ").strip()
         for i in cafe.users:
             if i.name == username:
                 user = i
@@ -89,7 +137,7 @@ while True:
         else:
             print(username, "does not exist.")
             continue
-        password = input("Password -> ")
+        password = input("Password -> ").strip()
         if user.check_password(password):
             logged_in = True
             logged_in_user = user
