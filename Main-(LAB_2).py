@@ -194,10 +194,15 @@ def checkout_sequence():
     chechout = input("Do you want to Chechout? ->").lower().strip()
     chechout = (chechout == "y") or (chechout == "yes")
     if chechout:
-        cafe.user_checkout(logged_in_user)
-        cafe.use_coupon(coupon_id)
-        print("Chechout Complete")
-        cafe.save_data()
+        if use_coupon:
+            cafe.user_checkout(logged_in_user)
+            cafe.use_coupon(coupon_id)
+            print("Chechout Complete")
+            cafe.save_data()
+        else:
+            cafe.user_checkout(logged_in_user)
+            print("Chechout Complete")
+            cafe.save_data()
     else:
         print("Chechout has been Canceled")
 
