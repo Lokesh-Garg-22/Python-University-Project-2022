@@ -222,7 +222,8 @@ Checkout -> Get the total price to be Paid.
 Add Item -> Add a New Item in the Menu. CAN ONLY BE DONE BY THE ADMIN.
 Add User -> Add a New User in the Database. CAN ONLY BE DONE BY THE ADMIN.
 Print Users -> Print All the Users in the Database. CAN ONLY BE DONE BY THE ADMIN.
-Set Item Discription -> Set a Discription of an Item. CAN ONLY BE DONE BY THE ADMIN.'''
+Set Item Discription -> Set Discription of an Item. CAN ONLY BE DONE BY THE ADMIN.
+Set Item Discount -> Set Discount for an Item. CAN ONLY BE DONE BY THE ADMIN.'''
 
 cafe = Cafe("Elite Cafe")
 cafe.load_data()
@@ -292,6 +293,8 @@ while True:
             if user_input[1] == "item":
                 if user_input[2] == "discription":
                     set_item_discription_sequence()
+                elif user_input[2] == "discount":
+                    set_item_discount_sequence()
         elif user_input[0] == "print":
             if user_input[1] == "users":
                 if not logged_in_user.admin:
