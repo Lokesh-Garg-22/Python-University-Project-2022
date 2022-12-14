@@ -145,7 +145,7 @@ while True:
     user_input = input("->").lower()
     if user_input == "login":
         pass
-    elif user_input == "exit":
+    elif user_input == "exit" or user_input == "quit":
         print("System Shuting Down".upper())
         break
     elif user_input == "help":
@@ -175,7 +175,7 @@ while True:
     print("What would you like to do.")
     while logged_in_user:
         user_input = input("->").lower().split()
-        if user_input[0] == "exit":
+        if user_input[0] == "exit" or user_input[0] == "quit":
             print("Logout first to exit.")
         elif user_input[0] == "logout":
             logged_in = False
