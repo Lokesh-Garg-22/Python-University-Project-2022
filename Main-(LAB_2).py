@@ -125,6 +125,18 @@ def chechout_sequence():
 logged_in = False
 logged_in_user = User("","")
 
+help_text = '''
+Exit / Quit -> To exit the Program.
+Menu -> Prints the Menu.
+Location -> Prints all the Locations our Cafe is Located.
+Order item_id user_id quantity(default=1) -> Place an Order by User.
+Get Orders user_id -> Get all The Orders Placed by The User.
+Cancel Order user_id order_id -> Cancel a Particular Order Placed by The User.
+Checkout user_id -> Get the total price to be Paid.
+Add Item user_id -> Add a New Item in the Menu. CAN ONLY BE DONE BY THE ADMIN.
+Add User user_id -> Add a New User in the Database. CAN ONLY BE DONE BY THE ADMIN.
+Get Users user_id -> Print All the Users in the Database. CAN ONLY BE DONE BY THE ADMIN.'''
+
 cafe = Cafe("Elite Cafe")
 cafe.load_data()
 
@@ -136,6 +148,8 @@ while True:
     elif user_input == "exit":
         print("System Shuting Down".upper())
         break
+    elif user_input == "help":
+        print(help_text)
     else:
         print("Please Login to continue.")
         continue
@@ -168,6 +182,8 @@ while True:
             logged_in_user = User("","")
             print("User Logged Out")
             break
+        elif user_input[0] == "help":
+            print(help_text)
         elif user_input[0] == "menu":
             print(cafe.menu)
         elif user_input[0] == "locations":
