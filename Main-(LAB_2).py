@@ -113,6 +113,7 @@ def chechout_sequence():
     data = ["Text to print", "total_amount"] ### print Chechout
     if use_coupon:
         print() ###print coupon discount
+    print("total_amount")
     chechout = input("Do you want to Chechout? ->").lower().strip()
     chechout = (chechout == "y") or (chechout == "yes")
     if chechout:
