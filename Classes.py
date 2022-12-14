@@ -73,6 +73,13 @@ class Menu:
             result += ("{}".format(j).ljust(40) + "{}\n".format(j.get_cost()))
         return result
 
+    def print_groups(self):
+        result = ""
+        for i in self.groups:
+            result += "{}\n".format(i)
+        return result
+
+
 
 class Cafe:
     data_file = "data.json"
@@ -140,6 +147,12 @@ class Cafe:
     def add_locations(self, *location):
         for l in location:
             self.locations.append(l)
+
+    def print_locations(self):
+        result = ""
+        for i in self.locations:
+            result += "{}\n".format(i)
+        return result
 
     def load_back_up_data(self):
         try:
