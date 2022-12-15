@@ -1,45 +1,194 @@
 {
     "coupons": {},
-    "locations": [],
+    "locations": [
+        "Chandigarh",
+        "New Delhi",
+        "Mumbai",
+        "Jaipur"
+    ],
     "menu": {
-        "Group-1": {
+        "Tea": {
             "items": [
                 {
                     "id": 1,
-                    "name": "Item-1",
-                    "price": 20,
+                    "name": "Apni Chai",
+                    "price": 15,
                     "discount": 0,
                     "discription": ""
                 },
                 {
                     "id": 2,
-                    "name": "Item-2",
+                    "name": "Masale Wali",
                     "price": 20,
                     "discount": 0,
                     "discription": ""
                 },
                 {
                     "id": 3,
-                    "name": "Item-3",
-                    "price": 20,
-                    "discount": 10,
+                    "name": "Elaichi Wali",
+                    "price": 25,
+                    "discount": 0,
                     "discription": ""
-                }
-            ]
-        },
-        "Group-2": {
-            "items": [
+                },
                 {
                     "id": 4,
-                    "name": "Item-4",
-                    "price": 20,
+                    "name": "Black Tea",
+                    "price": 15,
                     "discount": 0,
                     "discription": ""
                 },
                 {
                     "id": 5,
-                    "name": "Item-5",
+                    "name": "Lemon Tea",
                     "price": 20,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 6,
+                    "name": "Strawberry Tea",
+                    "price": 30,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 7,
+                    "name": "Peach Tea",
+                    "price": 20,
+                    "discount": 0,
+                    "discription": ""
+                }
+            ]
+        },
+        "Coffee": {
+            "items": [
+                {
+                    "id": 8,
+                    "name": "Hot Coffee",
+                    "price": 30,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 9,
+                    "name": "Cold Coffee",
+                    "price": 80,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 10,
+                    "name": "Espresso",
+                    "price": 50,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 11,
+                    "name": "Americano",
+                    "price": 60,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 12,
+                    "name": "Cappuccino",
+                    "price": 80,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 13,
+                    "name": "Cafe Latte",
+                    "price": 30,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 14,
+                    "name": "Caramel Macchiato",
+                    "price": 40,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 15,
+                    "name": "Piccolo",
+                    "price": 40,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 16,
+                    "name": "Affogato",
+                    "price": 40,
+                    "discount": 0,
+                    "discription": ""
+                }
+            ]
+        },
+        "Snacks": {
+            "items": [
+                {
+                    "id": 17,
+                    "name": "Poha",
+                    "price": 30,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 18,
+                    "name": "Samosa",
+                    "price": 15,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 19,
+                    "name": "Vada Pav",
+                    "price": 15,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 20,
+                    "name": "Veg Sandwich",
+                    "price": 30,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 21,
+                    "name": "Cheese Sandwich",
+                    "price": 35,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 22,
+                    "name": "Mix Pakoda",
+                    "price": 30,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 23,
+                    "name": "Bread Butter",
+                    "price": 15,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 24,
+                    "name": "Pasta",
+                    "price": 40,
+                    "discount": 0,
+                    "discription": ""
+                },
+                {
+                    "id": 25,
+                    "name": "Green Salad",
+                    "price": 30,
                     "discount": 0,
                     "discription": ""
                 }
