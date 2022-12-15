@@ -189,6 +189,35 @@ def set_item_discount_sequence():
     print("Item Discount has Been Changed")
     cafe.save_data()
 
+def add_coupon_sequence():
+    if not logged_in_user.admin:
+        print("You are not an Admin")
+        return
+    while True:
+        coupon_discount = input("Coupon Discount->").strip()
+        try:
+            coupon_discount = int(coupon_discount)
+        except:
+            print("Please Type a Number out of 100")
+            continue
+        break
+    while True:
+        coupon_times_used = input("Coupon Times Used->").strip()
+        try:
+            coupon_times_used = int(coupon_times_used)
+        except:
+            print("Please Type a Number")
+            continue
+        break
+    confirmation = input("Do you want to Add a Coupon of Discount {} which can be used {} times ->".format(coupon_discount, coupon_times_used)).lower().strip()
+    confirmation = (confirmation == "y") or (confirmation == "yes")
+    if confirmation:
+        coupon_id = cafe.generate_coupon(coupon_discount, coupon_times_used)
+        print("New Coupon of ID {} has been Generated".format(coupon_id))
+        cafe.save_data()
+    else:
+        print("New Coupon has been Canceled")
+
 def checkout_sequence():
     use_coupon = input("Do you want to use a Coupon? ->").lower().strip()
     use_coupon = (use_coupon == "y") or (use_coupon == "yes")
@@ -206,11 +235,11 @@ def checkout_sequence():
             print("Coupon ID {} not found".format(coupon_id))
             use_coupon = False
     orders, total_amount = cafe.get_user_checkout_data(logged_in_user)
-    print(orders)
+    print(orders,end="")
     if use_coupon:
         print("{}% Discount from The Coupon".format(coupon["discount"])) ###print coupon discount
         total_amount = (total_amount - (total_amount / 100 * coupon["discount"]))
-    print(("-"*30) + "{}".format(total_amount))
+    print("Total".ljust(30,"-") + "{}".format(total_amount))
     chechout = input("Do you want to Chechout? ->").lower().strip()
     chechout = (chechout == "y") or (chechout == "yes")
     if chechout:
@@ -241,7 +270,9 @@ Cancel Order -> Cancel a Particular Order Placed by The User.
 Checkout -> Get the total price to be Paid.
 Add Item -> Add a New Item in the Menu. CAN ONLY BE DONE BY THE ADMIN.
 Add User -> Add a New User in the Database. CAN ONLY BE DONE BY THE ADMIN.
+Add Coupon -> Add a New Coupon in the Database. CAN ONLY BE DONE BY THE ADMIN.
 Print Users -> Print All the Users in the Database. CAN ONLY BE DONE BY THE ADMIN.
+Print Coupons -> Print All the Coupons in the Database. CAN ONLY BE DONE BY THE ADMIN.
 Set Item Discription -> Set Discription of an Item. CAN ONLY BE DONE BY THE ADMIN.
 Set Item Discount -> Set Discount for an Item. CAN ONLY BE DONE BY THE ADMIN.'''
 
@@ -264,6 +295,8 @@ while True:
         continue
     while not logged_in:
         username = input("Username -> ").strip()
+        if username.lower() == "exit":
+            break
         for i in cafe.users:
             if i.name == username:
                 user = i
@@ -309,6 +342,8 @@ while True:
                 add_user_sequence()
             elif user_input[1] == "item":
                 add_item_sequence()
+            elif user_input[1] == "coupon":
+                add_coupon_sequence()
         elif user_input[0] == "set":
             if user_input[1] == "item":
                 if user_input[2] == "discription":
@@ -321,6 +356,11 @@ while True:
                     print("You are not an Admin")
                     continue
                 print(cafe.print_users())
+            if user_input[1] == "coupons":
+                if not logged_in_user.admin:
+                    print("You are not an Admin")
+                    continue
+                print(cafe.print_coupons())
             elif user_input[1] == "orders":
                 print(cafe.print_user_orders(logged_in_user))
         else:

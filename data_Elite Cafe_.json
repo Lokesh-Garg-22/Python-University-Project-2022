@@ -1,5 +1,10 @@
 {
-    "coupons": {},
+    "coupons": {
+        "9Q439UL66C": {
+            "discount": 20,
+            "times_used": 4
+        }
+    },
     "locations": [
         "Chandigarh",
         "New Delhi",
@@ -210,7 +215,16 @@
             "password": "pass",
             "admin": false,
             "location": "offline",
-            "orders": []
+            "orders": [
+                {
+                    "item": 3,
+                    "quantity": 2
+                },
+                {
+                    "item": 21,
+                    "quantity": 1
+                }
+            ]
         },
         {
             "id": 3,

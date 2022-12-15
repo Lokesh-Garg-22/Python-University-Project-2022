@@ -192,9 +192,9 @@ class Cafe:
 
     def print_users(self):
         result = ""
-        result += ("ID".ljust(15) + "Name".ljust(15) + "Is Admin\n")
+        result += ("ID".ljust(5) + "Name".ljust(20) + "Is Admin\n")
         for i in self.users:
-            result += ("{}".format(i.id).ljust(15) + "{}".format(i.name).ljust(15) + "{}\n".format(i.admin))
+            result += ("{}".format(i.id).ljust(5) + "{}".format(i.name).ljust(20) + "{}\n".format(i.admin))
         return result
 
     def print_user_orders(self, user):
@@ -236,6 +236,7 @@ class Cafe:
             if id not in self.coupons:
                 break
         self.coupons[id] = {"discount": discount, "times_used": times_used}
+        return id
 
     def add_coupon(self, id, discount, times_used = 1):
         self.coupons[id] = {"discount": discount, "times_used": times_used}
@@ -246,8 +247,17 @@ class Cafe:
                 t = self.coupons[i]["times_used"] - 1
                 if t <= 0:
                     del self.coupons[i]
+                    return
                 else:
                     self.coupons[i]["times_used"] = t
+                    return
+
+    def print_coupons(self):
+        result = ""
+        result += ("ID".ljust(15) + "Discount".ljust(15) + "Times Used\n")
+        for i in self.coupons:
+            result += ("{}".format(i).ljust(15) + "{}".format(self.coupons[i]["discount"]).ljust(15) + "{}\n".format(self.coupons[i]["times_used"]))
+        return result
 
     def add_locations(self, *location):
         for l in location:
