@@ -240,20 +240,20 @@ def checkout_sequence():
         print("{}% Discount from The Coupon".format(coupon["discount"])) ###print coupon discount
         total_amount = (total_amount - (total_amount / 100 * coupon["discount"]))
     print("Total".ljust(30,"-") + "{}".format(total_amount))
-    chechout = input("Do you want to Chechout? ->").lower().strip()
-    chechout = (chechout == "y") or (chechout == "yes")
-    if chechout:
+    checkout = input("Do you want to Checkout? ->").lower().strip()
+    checkout = (checkout == "y") or (checkout == "yes")
+    if checkout:
         if use_coupon:
             cafe.user_checkout(logged_in_user)
             cafe.use_coupon(coupon_id)
-            print("Chechout Complete")
+            print("Checkout Complete")
             cafe.save_data()
         else:
             cafe.user_checkout(logged_in_user)
-            print("Chechout Complete")
+            print("Checkout Complete")
             cafe.save_data()
     else:
-        print("Chechout has been Canceled")
+        print("Checkout has been Canceled")
 
 logged_in = False
 logged_in_user = User("","")
@@ -295,7 +295,7 @@ while True:
         continue
     while not logged_in:
         username = input("Username -> ").strip()
-        if username.lower() == "exit":
+        if username.lower() == "exit" or user_input == "quit":
             break
         for i in cafe.users:
             if i.name == username:

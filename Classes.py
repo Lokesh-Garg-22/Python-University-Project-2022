@@ -407,8 +407,8 @@ class User:
         total_amount = 0
         print_text += ("Item".ljust(30,"-") + "Price\n")
         for i in self.orders:
-            print_text += ("{}".format(i["item"]).ljust(30,"-") + "{}\n".format(i["item"].price))
-            total_amount += i["item"].price
+            print_text += ("{}".format(i["item"]).ljust(30,"-") + "{}\n".format(i["item"].price * i["quantity"]))
+            total_amount += i["item"].price * i["quantity"]
         return (print_text, total_amount)
 
     def checkout(self):
