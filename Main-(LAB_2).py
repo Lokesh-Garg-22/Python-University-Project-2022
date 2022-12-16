@@ -276,11 +276,11 @@ Print Coupons -> Print All the Coupons in the Database. CAN ONLY BE DONE BY THE 
 Set Item Discription -> Set Discription of an Item. CAN ONLY BE DONE BY THE ADMIN.
 Set Item Discount -> Set Discount for an Item. CAN ONLY BE DONE BY THE ADMIN.'''
 
-cafe = Cafe("Elite Cafe")
+cafe = Cafe("Express Roaster")
 cafe.load_data()
 # reset_cafe(cafe)
 
-print("Welcome to the", cafe.name)
+print("Welcome to The", cafe.name)
 while True:
     user_input = input("->").lower()
     if user_input == "login":
