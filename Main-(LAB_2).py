@@ -59,7 +59,7 @@ def order_sequence():
     cafe.save_data()
 
 def cancel_order_sequence():
-    cafe.print_user_orders(logged_in_user)
+    print(cafe.print_user_orders(logged_in_user),end="")
     item_name = input("Item Name->").strip()
     item = cafe.menu.get_item(item_name)
     if item == False:
