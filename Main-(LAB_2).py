@@ -290,6 +290,7 @@ while True:
         break
     elif user_input == "help":
         print(help_text)
+        continue
     else:
         print("Please Login to continue.")
         continue
